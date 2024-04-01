@@ -25,10 +25,13 @@ ingredients = st.multiselect('Choose up to 5 ingredients:',my_dataframe,max_sele
 
 if ingredients:
     ingredients_string = ''
+    
     for fruit in ingredients:
         ingredients_string +=fruit + ' '
+        
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit, 'SEARCH_ON'].iloc[0]
         st.write('The search value for ', fruit,' is ', search_on, '.')
+        
         st.subheader(fruit+' Nutrition information')
         #API part
         fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit)
